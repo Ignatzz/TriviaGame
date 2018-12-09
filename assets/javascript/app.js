@@ -74,7 +74,11 @@ function startTimer() {
     qTimer = setTimeout(function(){ 
         wrongAnswer(); 
         $("#quizZone").html("Too slow! The correct answer was: " + questionArray[i].correctA);
+        clearTimeout(zTimer);
     }, 12000);
+
+    
+    
 }
 
 //set up a stop timer function which cancels that countdown if the player make a choice before the timer runs out
@@ -119,6 +123,7 @@ function freshQuestion() {
     startTimer ();
     // if an answer button is clicked, it returns it's name and the function checks to see if it matches the correctA for that question in the object array - if so it runs the right answer function, if not, it runs the wrong answer function
     $(".answer-button").click(function() {
+        stopTimer ();
         if (this.name === questionArray[i].correctA){
             rightAnswer ();
             }
